@@ -99,23 +99,3 @@ Rights in the Work or (ii) assert any associated claims and causes of
 action with respect to the Work, in either case contrary to Affirmer's
 express Statement of Purpose.
 
-public class bitwise{
-public static void main(String args[]){
-int a=60,b=30;
-int c;
-c=a & b;
-System.out.println("Bitwise and operation="+c);
-c=a | b;
-System.out.println("Bitwise or operation="+c);
-c=a ^ b;
-System.out.println("Bitwise xor operation="+c);
-c=~a;
-System.out.println("Bitwise not operation="+c);
-c=a<<2;
-System.out.println("Bitwise left shift operation="+c);
-c=a>>2;
-System.out.println("Bitwise right shift operation="+c);
-c=a>>>2;
-System.out.println("Bitwise unsigned right operation="+c);
-}
-}
