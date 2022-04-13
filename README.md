@@ -226,21 +226,44 @@ public class PageRank {
 
 
 
-public class EditDistanceProblem {  
-public int editDistanceRecursion(String s1, String s2, int m, int n){  
- if(m==0) 
- return n;  
- if(n==0) 
- return m;  
- if(s1.charAt(m-1)==s2.charAt(n-1)) 
- return editDistanceRecursion(s1, s2, m-1, n-1); 
-   
- return 1 + Math.min(editDistanceRecursion(s1, s2, m, n-1),  
- Math.min(editDistanceRecursion(s1, s2, m-1, n),
- editDistanceRecursion(s1, s2, m-1, n-1))); 
+public class EditDistanceProblem {
+ public int editDistanceDP(String s1, String s2) {
+ int [][] solution = new int[s1.length()+1][s2.length()+1];  
+ //base case
+ //If any of the string if empty then number of operations  //needed would be equal to the length of other string  //(Either all characters will be removed or inserted)
+ 
+ for (int i = 0; i <=s2.length(); i++) { 
+solution[0][i] =i;
+ }
+ for (int i = 0; i <=s1.length(); i++) {
+ solution[i][0] =i;
+ }
+ //solving it bottom-up manner
+ int m = s1.length();
+ int n = s2.length();
+ for (int i = 1; i <=m ; i++) {
+ for (int j = 1; j <=n ; j++) {
+ //If last characters are matching, ignore the last character
+ // then the solution will be same as without the last  character.
+ if(s1.charAt(i-1)==s2.charAt(j-1))
+ solution[i][j] = solution[i-1][j-1];
+ else
+ solution[i][j] = 1 + Math.min(solution[i][j-1],
+ Math.min(solution[i-1][j],
+ solution[i-1][j-1]));
+ }
+ }
+ 
+ 
+ return solution[s1.length()][s2.length()];
+ }
+ public static void main(String[] args) {
+ String s1 = "horizon";
+ String s2 = "horizontal";
+ EditDistanceProblem ed = new EditDistanceProblem();
+ System.out.println("Minimum Edit Distance -(DP): " +  ed.editDistanceDP(s1, s2));
+ }
 }
-
-
 public static void main(String[] args) { 
  String s1 = "horizon"; 
  String s2 = "horizontal"; 
